@@ -1,0 +1,12 @@
+
+  <div class="container-fluid"  *ngIf="!isLoginRoute()">
+    <app-header></app-header>
+    <router-outlet />
+    <app-footer></app-footer>
+  </div>
+
+<div  *ngIf="isLoginRoute()">
+  <router-outlet />
+</div>
+
+<!-- PREGUNTARLE AL PROFESOR POR QUÉ NO ME CARGA EL LOGIN SOLO CON EL PARRAFO LOGIN WORKS -->
