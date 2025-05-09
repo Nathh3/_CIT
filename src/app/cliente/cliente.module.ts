@@ -9,7 +9,10 @@ const ROUTES: Routes =[
   {
     path:'',
     component: ListarClienteComponent
-  }
+  },
+  // {
+  //   path:'/match' para trabajo hago esta ruta
+  // }
 ]
 
 @NgModule({

@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { Cliente } from '../../models/cliente';
-import { Modal } from 'bootstrap';
+import { Modal, Toast } from 'bootstrap';
 import Swal from 'sweetalert2';
+import { UtiltyService } from '../../service/utilty.service';
 // import { Title } from '@angular/platform-browser';
 // import { ClienteService } from '../services/cliente.service';
 
@@ -13,9 +14,10 @@ import Swal from 'sweetalert2';
 export class ListarClienteComponent {
   @ViewChild('modalCliente') modal: ElementRef | undefined;
 
+
   VectorClientes: Cliente[] = [
-    {id:1,nombre:"Nathalia",email:"natha@email.com",telefono:"345671",tipoCamionRequerido:"FTL",pesoCarga:500,transporteComestibles:false,estibas:true},
-    {id:2,nombre:"Sebastian",email:"sebas@email.com	",telefono:"769021",tipoCamionRequerido:"LTL",pesoCarga:100,transporteComestibles:true,estibas:true}
+    { id: 1, nombre: "Nathalia", email: "natha@email.com", telefono: "345671"},
+    { id: 2, nombre: "Sebastian", email: "sebas@email.com	", telefono: "769021" }
   ]; //vector creado del tipo cliente, estoy simulando objetos que me llegan de la API
 
   clienteSeleccionado: Cliente | undefined = undefined;
@@ -23,11 +25,12 @@ export class ListarClienteComponent {
 
   // isLoading = true;
 
-  // constructor(private _clienteService: ClienteService, private _util: UtiltyService){
-  //   this.LoadClientes
-  //   // Aca me sale un error en _clienteService... y hice esto y no se quita import { ClienteService } from '../services/cliente.service';
+  constructor(//private _clienteService: ClienteService, 
+    private _util: UtiltyService){
+    //this.LoadClientes
+    // Aca me sale un error en _clienteService... y hice esto y no se quita import { ClienteService } from '../services/cliente.service';
 
-  // }
+  }
 
   // LoadClientes(){
   //   this.isLoading =true;
@@ -39,16 +42,17 @@ export class ListarClienteComponent {
   // }
 
   EditarCliente(cliente: Cliente) {
+    this._util.AbrirModal(this.modal);
     this.isNew = false;
     this.clienteSeleccionado = cliente;
   }
 
   //cree un objeto nuevo y vacio
   NuevoCliente() {
+    this._util.AbrirModal(this.modal);
     this.isNew = true;
     this.clienteSeleccionado = {
-      id: 0, nombre: "", email: "", telefono: "", tipoCamionRequerido: "", pesoCarga: 0,
-      transporteComestibles: false, estibas: false
+      id: 0, nombre: "", email: "", telefono: ""
     };
 
   }
@@ -72,16 +76,16 @@ export class ListarClienteComponent {
 
 
 
-  EliminarCliente(cl: Cliente){
+  EliminarCliente(cl: Cliente) {
 
     Swal.fire({
       icon: "question",
-      title : `¿Está seguro de eliminar el/la cliente ${cl.nombre}?`,
+      title: `¿Está seguro de eliminar el/la cliente ${cl.nombre}?`,
       showCancelButton: true,
       showConfirmButton: true,
       cancelButtonText: "No, conservar",
       confirmButtonText: "Si, eliminar",
-      allowOutsideClick: false, 
+      allowOutsideClick: false,
       buttonsStyling: false,
       reverseButtons: true,
 
@@ -92,31 +96,36 @@ export class ListarClienteComponent {
       }
 
     }
-    ).then( rs =>{
-      if(rs.isConfirmed){
+    ).then(rs => {
+      if (rs.isConfirmed) {
         //llamada a la API DELETE 
-        title: "Cliente eliminado correctamente"
-        icon: "success"
+        Swal.fire({
+          title: "Cliente eliminado correctamente",
+          icon: 'success'
+        })
       }
-    }
-
-    );
+    });
   }
 
-  CerrarModal(modal: ElementRef | undefined){
-    if(modal){
+  CerrarModal(modal: ElementRef | undefined) {
+    if (modal) {
       let bsModal = Modal.getInstance(modal?.nativeElement)
       bsModal?.hide();
-  
+
       let backdrop = document.querySelector(".modal-backdrop.fade.show");
-      if(backdrop) {
+      if (backdrop) {
         backdrop.parentNode?.removeChild(backdrop);
       }
-  
+
       document.body.removeAttribute('style');
       document.body.removeAttribute('class');
     }
   }
+
+  mostrarToast(){
+    this._util.showToaster('Mensaje prueba', 2, 'warning');
+  }
+
 }
 
 
