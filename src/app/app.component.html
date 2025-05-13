@@ -1,23 +1,23 @@
+<div class="container-fluid" *ngIf="!isLoginRoute()">
+  <app-header></app-header>
+  <router-outlet />
+  <app-footer></app-footer>
+</div>
 
-  <div class="container-fluid"  *ngIf="!isLoginRoute()">
-    <app-header></app-header>
-    <router-outlet />
-    <app-footer></app-footer>
-  </div>
-
-<div  *ngIf="isLoginRoute()">
+<div *ngIf="isLoginRoute()">
   <router-outlet />
 </div>
 
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div #toaster class="toast align-items-center text-bg-{{toasterData?.type}} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div #toaster class="toast align-items-center text-bg-{{toasterData?.type}} border-0" role="alert"
+    aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">
         {{toasterData?.message}}
       </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+        aria-label="Close"></button>
     </div>
   </div>
 </div>
-

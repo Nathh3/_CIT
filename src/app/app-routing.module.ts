@@ -5,19 +5,23 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path:'home',
+    path: 'home',
     component: HomeComponent
   },
   {
-    path:'clientes',
-    loadChildren: ()=> import('./cliente/cliente.module').then(m=> m.ClienteModule)
+    path: 'clientes',
+    loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule)
   },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path:'**',redirectTo:'/home'
+    path: 'trabajo',
+    loadChildren: () => import('./trabajo/trabajo.module').then(m=> m.TrabajoModule)
+  },
+  {
+    path: '**', redirectTo: '/home'
   }
 
 ];

@@ -14,28 +14,4 @@
         <input type="text" *ngIf="cliente" class="form-control" id="telefono" name="telefono"
             placeholder="Ingresa el numero de telefono" [(ngModel)]="cliente.telefono">
     </div>
-    <div class="mb-3">
-        <label for="tipoCamion" class="form-label">Tipo Camion</label>
-        <input type="text" *ngIf="cliente" class="form-control" id="tipoCamion" name="tipoCamion"
-            placeholder="Ingresa el tipo de camion" [(ngModel)]="cliente.tipoCamionRequerido">
-    </div>
-    <div class="mb-3">
-        <label for="pesoxCarga" class="form-label">Peso por Carga</label>
-        <input type="number" *ngIf="cliente" class="form-control" id="pesoxCarga" name="pesoxCarga"
-            placeholder="Ingresa el peso de la carga" [(ngModel)]="cliente.pesoCarga">
-    </div>
-    <div class="mb-3">
-        <input type="radio" *ngIf="cliente" id="comestibles-si" name="comestibles" value="S"
-            [(ngModel)]="cliente.transporteComestibles">
-        <label for="comestibles-si">Sí, comestibles</label> <br>
-        <input type="radio" *ngIf="cliente" id="comestibles-no" name="comestibles" value="N"
-            [(ngModel)]="cliente.transporteComestibles">
-        <label for="comestibles-no">No, comestibles</label>
-    </div>
-    <div class="mb-3">
-        <input type="radio" *ngIf="cliente" id="estibas-si" name="estibas" value="S" [(ngModel)]="cliente.estibas">
-        <label for="estibas-si">Sí, estibas</label> <br>
-        <input type="radio" *ngIf="cliente" id="estibas-no" name="estibas" value="N" [(ngModel)]="cliente.estibas">
-        <label for="estibas-no">No, estibas</label>
-    </div>
 </form>
